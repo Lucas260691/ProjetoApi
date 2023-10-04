@@ -5,9 +5,16 @@
 // update: quando queremos alterar alguam sessao
 // destroy: quando queremos deletar uma sessao
 
+import User from "../models/User";
+
 class SessionController {
-  store(req, res){
-    return res.json({ message: 'Minha api'});
+  async store(req, res){
+
+    const { email } = req.body
+
+    let user = await User.create({ email })
+
+    return res.json(user);
   }
 }
 
